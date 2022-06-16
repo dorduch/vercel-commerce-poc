@@ -65,7 +65,7 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   }
 }
 
-export default function Slug({
+export default function Id({
   product,
   relatedProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -78,4 +78,4 @@ export default function Slug({
   )
 }
 
-Slug.Layout = Layout
+Id.Layout = Layout

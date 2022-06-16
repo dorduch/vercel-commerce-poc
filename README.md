@@ -196,3 +196,4 @@ In order to fix this, run `yarn dev` in the monorepo root folder first.
 > Using `yarn dev` from the root is recommended for developing, which will run watch mode on all packages.
 
 </details>
+# hack-22-vercel-ecom-template
