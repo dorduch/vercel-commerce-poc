@@ -10,6 +10,9 @@ const isVendure = provider === '@vercel/commerce-vendure'
 
 module.exports = withCommerceConfig({
   commerce,
+  images: {
+    domains: ['static.wixstatic.com'],
+  },
   i18n: {
     locales: ['en-US', 'es'],
     defaultLocale: 'en-US',

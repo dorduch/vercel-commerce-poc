@@ -7,21 +7,17 @@ import { useRouter } from 'next/router'
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
+import {getEcomPrdouct, getEcomProducts} from "../../services/ecomApiService";
 
 export async function getStaticProps({
   params,
   locale,
   locales,
   preview,
-}: GetStaticPropsContext<{ slug: string }>) {
+}: GetStaticPropsContext<{ productId: string }>) {
   const config = { locale, locales }
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
-  const productPromise = commerce.getProduct({
-    variables: { slug: params!.slug },
-    config,
-    preview,
-  })
 
   const allProductsPromise = commerce.getAllProducts({
     variables: { first: 4 },
@@ -30,11 +26,12 @@ export async function getStaticProps({
   })
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
-  const { product } = await productPromise
-  const { products: relatedProducts } = await allProductsPromise
+
+  const product = await getEcomPrdouct(params!.productId)
+  const relatedProducts = await getEcomProducts({paging: {limit: 4}})
 
   if (!product) {
-    throw new Error(`Product with slug '${params!.slug}' not found`)
+    throw new Error(`Product with id '${params!.productId}' not found`)
   }
 
   return {
@@ -65,7 +62,7 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   }
 }
 
-export default function Id({
+export default function ProductId({
   product,
   relatedProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -78,4 +75,4 @@ export default function Id({
   )
 }
 
-Id.Layout = Layout
+ProductId.Layout = Layout

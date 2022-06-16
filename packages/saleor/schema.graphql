@@ -178,7 +178,7 @@ input AccountRegisterInput {
   metadata: [MetadataInput!]
 
   """
-  Slug of a channel which will be used to notify users. Optional when only one channel exists.
+  ProductId of a channel which will be used to notify users. Optional when only one channel exists.
   """
   channel: String
 }
@@ -1749,7 +1749,7 @@ type Category implements Node & ObjectWithMetadata {
   """
   products(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -2072,7 +2072,7 @@ input ChannelCreateInput {
   name: String!
 
   """
-  Slug of the channel.
+  ProductId of the channel.
   """
   slug: String!
 
@@ -2177,7 +2177,7 @@ input ChannelUpdateInput {
   name: String
 
   """
-  Slug of the channel.
+  ProductId of the channel.
   """
   slug: String
 
@@ -2379,7 +2379,7 @@ type CheckoutCreate {
 
 input CheckoutCreateInput {
   """
-  Slug of a channel in which to create a checkout.
+  ProductId of a channel in which to create a checkout.
   """
   channel: String
 
@@ -2906,7 +2906,7 @@ input CollectionCreateInput {
   name: String
 
   """
-  Slug of the collection.
+  ProductId of the collection.
   """
   slug: String
 
@@ -3010,7 +3010,7 @@ input CollectionInput {
   name: String
 
   """
-  Slug of the collection.
+  ProductId of the collection.
   """
   slug: String
 
@@ -5521,7 +5521,7 @@ input MenuCreateInput {
   name: String!
 
   """
-  Slug of the menu. Will be generated if not provided.
+  ProductId of the menu. Will be generated if not provided.
   """
   slug: String
 
@@ -5585,7 +5585,7 @@ input MenuInput {
   name: String
 
   """
-  Slug of the menu.
+  ProductId of the menu.
   """
   slug: String
 }
@@ -6646,7 +6646,7 @@ type Mutation {
     moves: [ReorderInput]!
 
     """
-    Id of product that variants order will be altered.
+    ProductId of product that variants order will be altered.
     """
     productId: ID!
   ): ProductVariantReorder
@@ -6942,12 +6942,12 @@ type Mutation {
   """
   productVariantSetDefault(
     """
-    Id of a product that will have the default variant set.
+    ProductId of a product that will have the default variant set.
     """
     productId: ID!
 
     """
-    Id of a variant that will be set as default.
+    ProductId of a variant that will be set as default.
     """
     variantId: ID!
   ): ProductVariantSetDefault
@@ -7078,7 +7078,7 @@ type Mutation {
   """
   paymentInitialize(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -8894,7 +8894,7 @@ type Mutation {
   """
   requestPasswordReset(
     """
-    Slug of a channel which will be used for notify user. Optional when only one channel exists.
+    ProductId of a channel which will be used for notify user. Optional when only one channel exists.
     """
     channel: String
 
@@ -8964,7 +8964,7 @@ type Mutation {
   """
   requestEmailChange(
     """
-    Slug of a channel which will be used to notify users. Optional when only one channel exists.
+    ProductId of a channel which will be used to notify users. Optional when only one channel exists.
     """
     channel: String
 
@@ -8989,7 +8989,7 @@ type Mutation {
   """
   confirmEmailChange(
     """
-    Slug of a channel which will be used to notify users. Optional when only one channel exists.
+    ProductId of a channel which will be used to notify users. Optional when only one channel exists.
     """
     channel: String
 
@@ -9079,7 +9079,7 @@ type Mutation {
   """
   accountRequestDeletion(
     """
-    Slug of a channel which will be used to notify users. Optional when only one channel exists.
+    ProductId of a channel which will be used to notify users. Optional when only one channel exists.
     """
     channel: String
 
@@ -12931,7 +12931,7 @@ type ProductType implements Node & ObjectWithMetadata {
   """
   products(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -13839,7 +13839,7 @@ type Query {
     id: ID!
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): ShippingZone
@@ -13854,7 +13854,7 @@ type Query {
     filter: ShippingZoneFilterInput
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -13964,7 +13964,7 @@ type Query {
     id: ID
 
     """
-    Slug of the category
+    ProductId of the category
     """
     slug: String
   ): Category
@@ -13979,12 +13979,12 @@ type Query {
     id: ID
 
     """
-    Slug of the category
+    ProductId of the category
     """
     slug: String
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): Collection
@@ -14004,7 +14004,7 @@ type Query {
     sortBy: CollectionSortingInput
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14039,12 +14039,12 @@ type Query {
     id: ID
 
     """
-    Slug of the product.
+    ProductId of the product.
     """
     slug: String
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): Product
@@ -14064,7 +14064,7 @@ type Query {
     sortBy: ProductOrder
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14149,7 +14149,7 @@ type Query {
     sku: String
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): ProductVariant
@@ -14164,7 +14164,7 @@ type Query {
     ids: [ID]
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14204,7 +14204,7 @@ type Query {
     period: ReportingPeriod!
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String!
 
@@ -14414,7 +14414,7 @@ type Query {
     filter: OrderFilterInput
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14484,7 +14484,7 @@ type Query {
     period: ReportingPeriod
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): TaxedMoney
@@ -14504,7 +14504,7 @@ type Query {
   """
   menu(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14529,7 +14529,7 @@ type Query {
   """
   menus(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14574,7 +14574,7 @@ type Query {
     id: ID!
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): MenuItem
@@ -14584,7 +14584,7 @@ type Query {
   """
   menuItems(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14709,7 +14709,7 @@ type Query {
     id: ID!
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): Sale
@@ -14734,7 +14734,7 @@ type Query {
     query: String
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14769,7 +14769,7 @@ type Query {
     id: ID!
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): Voucher
@@ -14794,7 +14794,7 @@ type Query {
     query: String
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -14884,7 +14884,7 @@ type Query {
   """
   checkouts(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
 
@@ -15004,7 +15004,7 @@ type Query {
     id: ID
 
     """
-    Slug of the attribute.
+    ProductId of the attribute.
     """
     slug: String
   ): Attribute
@@ -16428,7 +16428,7 @@ type Shop {
     currency: String
 
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): [PaymentGateway!]!
@@ -16443,7 +16443,7 @@ type Shop {
   """
   availableShippingMethods(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String!
 
@@ -17473,7 +17473,7 @@ type User implements Node & ObjectWithMetadata {
   """
   checkoutTokens(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): [UUID!]
@@ -17559,7 +17559,7 @@ type User implements Node & ObjectWithMetadata {
   """
   storedPaymentSources(
     """
-    Slug of a channel for which the data should be returned.
+    ProductId of a channel for which the data should be returned.
     """
     channel: String
   ): [PaymentSource]
@@ -17681,7 +17681,7 @@ input UserCreateInput {
   redirectUrl: String
 
   """
-  Slug of a channel which will be used for notify user. Optional when only one channel exists.
+  ProductId of a channel which will be used for notify user. Optional when only one channel exists.
   """
   channel: String
 }

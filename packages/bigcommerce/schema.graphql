@@ -63,7 +63,7 @@ type Brand implements Node {
   id: ID!
 
   """
-  Id of the brand.
+  ProductId of the brand.
   """
   entityId: Int!
 
@@ -1227,7 +1227,7 @@ type Product implements Node {
   id: ID!
 
   """
-  Id of the product.
+  ProductId of the product.
   """
   entityId: Int!
 
@@ -1992,7 +1992,7 @@ type Variant implements Node {
   id: ID!
 
   """
-  Id of the variant.
+  ProductId of the variant.
   """
   entityId: Int!
 

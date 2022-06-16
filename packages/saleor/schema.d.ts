@@ -175,7 +175,7 @@ export type AccountRegisterInput = {
   languageCode?: Maybe<LanguageCodeEnum>
   /** User public metadata. */
   metadata?: Maybe<Array<MetadataInput>>
-  /** Slug of a channel which will be used to notify users. Optional when only one channel exists. */
+  /** ProductId of a channel which will be used to notify users. Optional when only one channel exists. */
   channel?: Maybe<Scalars['String']>
 }
 
@@ -1387,7 +1387,7 @@ export type ChannelCreateInput = {
   isActive?: Maybe<Scalars['Boolean']>
   /** Name of the channel. */
   name: Scalars['String']
-  /** Slug of the channel. */
+  /** ProductId of the channel. */
   slug: Scalars['String']
   /** Currency of the channel. */
   currencyCode: Scalars['String']
@@ -1459,7 +1459,7 @@ export type ChannelUpdateInput = {
   isActive?: Maybe<Scalars['Boolean']>
   /** Name of the channel. */
   name?: Maybe<Scalars['String']>
-  /** Slug of the channel. */
+  /** ProductId of the channel. */
   slug?: Maybe<Scalars['String']>
   /** List of shipping zones to assign to the channel. */
   addShippingZones?: Maybe<Array<Scalars['ID']>>
@@ -1579,7 +1579,7 @@ export type CheckoutCreate = {
 }
 
 export type CheckoutCreateInput = {
-  /** Slug of a channel in which to create a checkout. */
+  /** ProductId of a channel in which to create a checkout. */
   channel?: Maybe<Scalars['String']>
   /** A list of checkout lines, each containing information about an item in the checkout. */
   lines: Array<Maybe<CheckoutLineInput>>
@@ -1932,7 +1932,7 @@ export type CollectionCreateInput = {
   isPublished?: Maybe<Scalars['Boolean']>
   /** Name of the collection. */
   name?: Maybe<Scalars['String']>
-  /** Slug of the collection. */
+  /** ProductId of the collection. */
   slug?: Maybe<Scalars['String']>
   /** Description of the collection (JSON). */
   description?: Maybe<Scalars['JSONString']>
@@ -1994,7 +1994,7 @@ export type CollectionInput = {
   isPublished?: Maybe<Scalars['Boolean']>
   /** Name of the collection. */
   name?: Maybe<Scalars['String']>
-  /** Slug of the collection. */
+  /** ProductId of the collection. */
   slug?: Maybe<Scalars['String']>
   /** Description of the collection (JSON). */
   description?: Maybe<Scalars['JSONString']>
@@ -3727,7 +3727,7 @@ export type MenuCreate = {
 export type MenuCreateInput = {
   /** Name of the menu. */
   name: Scalars['String']
-  /** Slug of the menu. Will be generated if not provided. */
+  /** ProductId of the menu. Will be generated if not provided. */
   slug?: Maybe<Scalars['String']>
   /** List of menu items. */
   items?: Maybe<Array<Maybe<MenuItemInput>>>
@@ -3774,7 +3774,7 @@ export type MenuFilterInput = {
 export type MenuInput = {
   /** Name of the menu. */
   name?: Maybe<Scalars['String']>
-  /** Slug of the menu. */
+  /** ProductId of the menu. */
   slug?: Maybe<Scalars['String']>
 }
 
@@ -10632,7 +10632,7 @@ export type UserCreateInput = {
   languageCode?: Maybe<LanguageCodeEnum>
   /** URL of a view where users should be redirected to set the password. URL in RFC 1808 format. */
   redirectUrl?: Maybe<Scalars['String']>
-  /** Slug of a channel which will be used for notify user. Optional when only one channel exists. */
+  /** ProductId of a channel which will be used for notify user. Optional when only one channel exists. */
   channel?: Maybe<Scalars['String']>
 }
 

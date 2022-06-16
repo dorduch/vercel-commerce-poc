@@ -64,7 +64,7 @@ export type Brand = Node & {
   __typename?: 'Brand'
   /** The ID of an object */
   id: Scalars['ID']
-  /** Id of the brand. */
+  /** ProductId of the brand. */
   entityId: Scalars['Int']
   /** Name of the brand. */
   name: Scalars['String']
@@ -747,7 +747,7 @@ export type Product = Node & {
   __typename?: 'Product'
   /** The ID of an object */
   id: Scalars['ID']
-  /** Id of the product. */
+  /** ProductId of the product. */
   entityId: Scalars['Int']
   /** Default product variant when no options are selected. */
   sku: Scalars['String']
@@ -1273,7 +1273,7 @@ export type Variant = Node & {
   __typename?: 'Variant'
   /** The ID of an object */
   id: Scalars['ID']
-  /** Id of the variant. */
+  /** ProductId of the variant. */
   entityId: Scalars['Int']
   /** Sku of the variant. */
   sku: Scalars['String']
