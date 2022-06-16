@@ -2,14 +2,15 @@ import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Grid, Marquee, Hero } from '@components/ui'
-import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import {getEcomProducts} from "../services/ecomApiService";
+import {GetServerSidePropsContext} from "next/types";
 
-export async function getStaticProps({
+export async function getServerSideProps({
   preview,
   locale,
   locales,
-}: GetStaticPropsContext) {
+}: GetServerSidePropsContext) {
   const config = { locale, locales }
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
@@ -24,14 +25,13 @@ export async function getStaticProps({
       categories,
       brands,
       pages,
-    },
-    revalidate: 60,
+    }
   }
 }
 
 export default function Home({
   products,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Grid variant="filled">

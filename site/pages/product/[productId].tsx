@@ -1,6 +1,6 @@
 import type {
   GetStaticPathsContext,
-  GetStaticPropsContext,
+  GetStaticPropsContext, InferGetServerSidePropsType,
   InferGetStaticPropsType,
 } from 'next'
 import { useRouter } from 'next/router'
@@ -8,13 +8,14 @@ import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
 import {getEcomPrdouct, getEcomProducts} from "../../services/ecomApiService";
+import {GetServerSidePropsContext} from "next/types";
 
-export async function getStaticProps({
+export async function getServerSideProps({
   params,
   locale,
   locales,
   preview,
-}: GetStaticPropsContext<{ productId: string }>) {
+}: GetServerSidePropsContext<{ productId: string }>) {
   const config = { locale, locales }
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
@@ -40,32 +41,31 @@ export async function getStaticProps({
       product,
       relatedProducts,
       categories,
-    },
-    revalidate: 200,
+    }
   }
 }
 
-export async function getStaticPaths({ locales }: GetStaticPathsContext) {
-  const { products } = await commerce.getAllProductPaths()
-
-  return {
-    paths: locales
-      ? locales.reduce<string[]>((arr, locale) => {
-          // Add a product path for every locale
-          products.forEach((product: any) => {
-            arr.push(`/${locale}/product${product.path}`)
-          })
-          return arr
-        }, [])
-      : products.map((product: any) => `/product${product.path}`),
-    fallback: 'blocking',
-  }
-}
+// export async function getStaticPaths({ locales }: GetStaticPathsContext) {
+//   const { products } = await commerce.getAllProductPaths()
+//
+//   return {
+//     paths: locales
+//       ? locales.reduce<string[]>((arr, locale) => {
+//           // Add a product path for every locale
+//           products.forEach((product: any) => {
+//             arr.push(`/${locale}/product${product.path}`)
+//           })
+//           return arr
+//         }, [])
+//       : products.map((product: any) => `/product${product.path}`),
+//     fallback: 'blocking',
+//   }
+// }
 
 export default function ProductId({
   product,
   relatedProducts,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}:InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter()
 
   return router.isFallback ? (
