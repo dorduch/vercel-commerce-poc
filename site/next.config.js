@@ -19,7 +19,7 @@ module.exports = withCommerceConfig({
     locales: ['en-US', 'es'],
     defaultLocale: 'en-US',
   },
-  assetPrefix: isProd ? '<site url>/_api/hack-reverse-proxy' : '',
+  // assetPrefix: isProd ? '<site url>/_api/hack-reverse-proxy' : '',
   rewrites() {
     return [
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {
