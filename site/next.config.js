@@ -20,6 +20,7 @@ module.exports = withCommerceConfig({
     defaultLocale: 'en-US',
   },
   assetPrefix: isProd ? '<site url>/_api/hack-reverse-proxy' : '',
+  basePath: '<site url>',
   rewrites() {
     return [
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {
