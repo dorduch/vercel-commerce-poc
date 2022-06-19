@@ -9,6 +9,7 @@ import { Bag, Cross, Check } from '@components/icons'
 import usePrice from '@framework/product/use-price'
 import SidebarLayout from '@components/common/SidebarLayout'
 import {useCart} from "../../../services/ecomApiService";
+import {useRouter} from "next/router";
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
@@ -28,7 +29,20 @@ const CartSidebarView: FC = () => {
     }
   )
   const handleClose = () => closeSidebar()
-  const goToCheckout = () => setSidebarView('CHECKOUT_VIEW')
+  const router = useRouter();
+
+  const goToCheckout = () => {
+    handleClose();
+    router.push(`/checkout?appSectionParams=${encodeURIComponent(JSON.stringify({"a11y": true,
+      "cartId": currentCart?.cart.id,
+      // "storeUrl": "https://www.hilba4free.com",
+      "isPickupFlow": false,
+      "cashierPaymentId": "",
+      "origin": "productPage",
+      "originType": "buyNow",
+      // "checkoutId": "ff9dee5d-484b-40e7-a76e-740fabb7f893"
+    }))}`)
+  }
 
   console.log({currentCart});
 
@@ -115,15 +129,10 @@ const CartSidebarView: FC = () => {
               <span>{total}</span>
             </div>
             <div>
-              {process.env.COMMERCE_CUSTOMCHECKOUT_ENABLED ? (
+
                 <Button Component="a" width="100%" onClick={goToCheckout}>
                   Proceed to Checkout ({total})
                 </Button>
-              ) : (
-                <Button href="/checkout" Component="a" width="100%">
-                  Proceed to Checkout
-                </Button>
-              )}
             </div>
           </div>
         </>
