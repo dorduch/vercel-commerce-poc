@@ -6,40 +6,44 @@ import CartItem from '../CartItem'
 import { Button, Text } from '@components/ui'
 import { useUI } from '@components/ui/context'
 import { Bag, Cross, Check } from '@components/icons'
-import useCart from '@framework/cart/use-cart'
 import usePrice from '@framework/product/use-price'
 import SidebarLayout from '@components/common/SidebarLayout'
+import {useCart} from "../../../services/ecomApiService";
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
-  const { data, isLoading, isEmpty } = useCart()
+  const {currentCart} = useCart()
+  // const { data, isLoading, isEmpty } = useCart()
 
   const { price: subTotal } = usePrice(
-    data && {
-      amount: Number(data.subtotalPrice),
-      currencyCode: data.currency.code,
+    currentCart?.cart && {
+      amount: Number(currentCart?.cart.subtotal.amount),
+      currencyCode: currentCart.cart.currency,
     }
   )
   const { price: total } = usePrice(
-    data && {
-      amount: Number(data.totalPrice),
-      currencyCode: data.currency.code,
+    currentCart?.cart && {
+      amount: Number(currentCart?.cart.subtotal.amount),
+      currencyCode: currentCart.cart.currency,
     }
   )
   const handleClose = () => closeSidebar()
   const goToCheckout = () => setSidebarView('CHECKOUT_VIEW')
 
+  console.log({currentCart});
+
   const error = null
   const success = null
+  const isEmpty = !currentCart
 
   return (
     <SidebarLayout
       className={cn({
-        [s.empty]: error || success || isLoading || isEmpty,
+        [s.empty]: error || success,
       })}
       handleClose={handleClose}
     >
-      {isLoading || isEmpty ? (
+      {isEmpty ? (
         <div className="flex-1 px-4 flex flex-col justify-center items-center">
           <span className="border border-dashed border-primary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-secondary text-secondary">
             <Bag className="absolute" />
@@ -81,11 +85,11 @@ const CartSidebarView: FC = () => {
               </a>
             </Link>
             <ul className={s.lineItemsList}>
-              {data!.lineItems.map((item: any) => (
+              {currentCart?.cart.lineItems.map((item: any) => (
                 <CartItem
                   key={item.id}
                   item={item}
-                  currencyCode={data!.currency.code}
+                  currencyCode={currentCart?.cart.currency}
                 />
               ))}
             </ul>

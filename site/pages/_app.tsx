@@ -6,6 +6,7 @@ import { FC, useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
+import {CartProvider} from "../services/ecomApiService";
 
 const Noop: FC = ({ children }) => <>{children}</>
 
@@ -20,9 +21,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head />
       <ManagedUIContext>
+        <CartProvider>
         <Layout pageProps={pageProps}>
           <Component {...pageProps} />
         </Layout>
+        </CartProvider>
       </ManagedUIContext>
     </>
   )
