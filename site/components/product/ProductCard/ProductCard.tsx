@@ -7,7 +7,6 @@ import Image, { ImageProps } from 'next/image'
 import WishlistButton from '@components/wishlist/WishlistButton'
 import usePrice from '@framework/product/use-price'
 import ProductTag from '../ProductTag'
-import {useRouter} from "next/router";
 
 interface Props {
   className?: string
@@ -37,15 +36,11 @@ const ProductCard: FC<Props> = ({
     { [s.slim]: variant === 'slim', [s.simple]: variant === 'simple' },
     className
   )
-  const router = useRouter();
 
-  const onProductClicked = () => {
-    router.push(`/product/${product.id}`)
-  }
 
   return (
-
-      <a className={rootClassName} onClick={onProductClicked} aria-label={product.name}>
+    <Link href={`/product/${product.id}`}>
+      <a className={rootClassName} aria-label={product.name}>
         {variant === 'slim' && (
           <>
             <div className={s.header}>
@@ -137,6 +132,7 @@ const ProductCard: FC<Props> = ({
           </>
         )}
       </a>
+    </Link>
   )
 }
 
