@@ -3,35 +3,46 @@ import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Grid, Marquee, Hero } from '@components/ui'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import {getEcomProducts} from "../services/ecomApiService";
+import {getAuthorization, getEcomProducts, useAuthorization} from "../services/ecomApiService";
 import {GetServerSidePropsContext} from "next/types";
+import {useEffect, useState} from "react";
+import {Product} from "@commerce/types/product";
+//
+// export async function getServerSideProps({
+//   preview,
+//   locale,
+//   locales,
+// }: GetServerSidePropsContext) {
+//   const config = { locale, locales }
+//   const pagesPromise = commerce.getAllPages({ config, preview })
+//   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
+//   const { pages } = await pagesPromise
+//   const { categories, brands } = await siteInfoPromise
+// const authorization = await getAuthorization()
+//   const {products} = await (await fetch('//my-site-3/_api/hack-reverse-proxy/get-products', {headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({query: {}, authorization})})).json()
+//
+//   return {
+//     props: {
+//       products,
+//       categories,
+//       brands,
+//       pages,
+//     }
+//   }
+// }
 
-export async function getServerSideProps({
-  preview,
-  locale,
-  locales,
-}: GetServerSidePropsContext) {
-  const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
-  const { pages } = await pagesPromise
-  const { categories, brands } = await siteInfoPromise
-
-  const products = await getEcomProducts();
-
-  return {
-    props: {
-      products,
-      categories,
-      brands,
-      pages,
-    }
+export default function Home() {
+  const [products, setProducts] = useState<Product[]>([])
+    const authorization = useAuthorization();
+  const getProducts = async () =>{
+    const {products} = await (await fetch('//my-site-3/_api/hack-reverse-proxy/get-products', {headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({query: {}, authorization})})).json()
+    return products
   }
-}
-
-export default function Home({
-  products,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  useEffect(() => {
+    if (authorization) {
+      getProducts().then(_products => setProducts(_products))
+    }
+  },[authorization])
   return (
     <>
       <Hero

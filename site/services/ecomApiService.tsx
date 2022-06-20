@@ -31,7 +31,18 @@ interface queryConfig {
 }
 
 const authorization = '95ldX3-zPvJ4W3gcp-vR_dpYVbEHpyqoRZ3va3NKvXM.eyJpbnN0YW5jZUlkIjoiNmI4YjIzNWMtZWJkNS00YWM1LWExZTAtOTI5NmQ2OWY3OTVhIiwiYXBwRGVmSWQiOiIxMzgwYjcwMy1jZTgxLWZmMDUtZjExNS0zOTU3MWQ5NGRmY2QiLCJtZXRhU2l0ZUlkIjoiZGY1YThmNmMtZTcxMC00ZmI5LThlY2EtMjRkZDI3N2RlNmJmIiwic2lnbkRhdGUiOiIyMDIyLTA2LTIwVDAxOjEwOjA3Ljg4OFoiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJjZjQ1YzFhMy01MDE3LTRlMTYtYWY3YS1iYTU5N2UwMTBjOTQiLCJhaWQiOiJjMDVkMGRmMy0wOWVjLTQ1YzUtYTAxNS1mYmQ1NzliMjliY2YiLCJiaVRva2VuIjoiYjRkMWFjMzAtMGNjNS0wNTdjLTJmMmEtYjY0YmYxZTI5ZmU1Iiwic2l0ZU93bmVySWQiOiI4Zjc0ZDViMy01YWRlLTQxM2MtOWJlMy0xMTVkYmQ4N2I3ODcifQ';
-export async function getEcomProducts(query: queryConfig = {}) {
+// @ts-ignore
+export const getAuthorization =  async  () =>(await __WIX__.dynamicModel).apps['1380b703-ce81-ff05-f115-39571d94dfcd'].instance
+
+export const useAuthorization = () => {
+  const [storedValue, setValue] = useLocalStorage('ecom-auth',null)
+  getAuthorization().then((auth) => {
+    setValue(auth)
+  }).catch(e => console.log(e))
+
+  return storedValue;
+}
+export async function getEcomProducts(authorization: string, query: queryConfig = {}) {
   let url = 'https://www.wixapis.com/stores/v1/products/query';
 
   let options = {
@@ -48,7 +59,7 @@ export async function getEcomProducts(query: queryConfig = {}) {
   return productsDto.map(productDtoToSiteProduct)
 }
 
-export async function getEcomPrdouct(id: string) {
+export async function getEcomPrdouct(authorization: string, id: string) {
   let url = `https://www.wixapis.com/stores/v1/products/${id}`;
 
   let options = {
