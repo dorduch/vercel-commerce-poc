@@ -5,7 +5,7 @@
 
 .slider {
   @apply relative h-full transition-opacity duration-150;
-  @apply bg-accent-0;
+  background-color: var(--primary);
   opacity: 0;
 }
 
