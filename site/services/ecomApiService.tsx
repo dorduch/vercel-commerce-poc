@@ -2,6 +2,7 @@ import {ProductDTO} from "../types/ProductDto";
 import {Product} from "@commerce/types/product";
 import {createContext, useContext, useState} from "react";
 import {CartDto} from "../types/CartDto";
+import {useLocalStorage} from "@lib/hooks/useLocalStorage";
 
 function productDtoToSiteProduct(dto: ProductDTO): Product {
   return {
@@ -117,16 +118,20 @@ interface Cart {
   cart: CartDto;
 }
 const _useCart = () => {
-  const [currentCart, setCurrentCart] = useState<Cart | null>(null);
+  const [storedValue, setValue] = useLocalStorage('ecom-cart',null)
+  const loadedCart = storedValue ? JSON.parse(storedValue) : null
+  const [currentCart, setCurrentCart] = useState<Cart | null>(loadedCart);
   const addToCart =  async (item: Product) => {
     if (!currentCart) {
       const cart = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/add-to-cart', {method: 'POST', body: `{"item": ${JSON.stringify(item)}}`, headers: { 'Content-Type': 'application/json'}})).json()
       // const cartId = await createCart(item)
       console.log(cart);
       setCurrentCart({cart, items: [item]})
+      setValue(JSON.stringify({cart, items: [item]}))
     } else {
       const cart = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/add-to-cart', {method: 'POST', body: JSON.stringify({item, cartId: currentCart.cart.id}), headers: { 'Content-Type': 'application/json'}})).json()
       setCurrentCart({cart, items: [...currentCart.items, item]})
+      setValue(JSON.stringify({cart, items: [...currentCart.items, item]}))
 
       // await addToCartApi(currentCart.id, item)
     }
