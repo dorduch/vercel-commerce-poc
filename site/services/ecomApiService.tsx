@@ -26,10 +26,12 @@ interface queryConfig {
   }
 }
 
-const authorization = 'vlpTQMSFiSNcoyaxuK4GMjD7SR54T7UOLypXaZTskdc.eyJpbnN0YW5jZUlkIjoiNmI4YjIzNWMtZWJkNS00YWM1LWExZTAtOTI5NmQ2OWY3OTVhIiwiYXBwRGVmSWQiOiIxMzgwYjcwMy1jZTgxLWZmMDUtZjExNS0zOTU3MWQ5NGRmY2QiLCJtZXRhU2l0ZUlkIjoiZGY1YThmNmMtZTcxMC00ZmI5LThlY2EtMjRkZDI3N2RlNmJmIiwic2lnbkRhdGUiOiIyMDIyLTA2LTE5VDEzOjEyOjQ0LjgzM1oiLCJ1aWQiOiI4Zjc0ZDViMy01YWRlLTQxM2MtOWJlMy0xMTVkYmQ4N2I3ODciLCJwZXJtaXNzaW9ucyI6Ik9XTkVSIiwiZGVtb01vZGUiOmZhbHNlLCJvcmlnaW5JbnN0YW5jZUlkIjoiY2Y0NWMxYTMtNTAxNy00ZTE2LWFmN2EtYmE1OTdlMDEwYzk0IiwiYmlUb2tlbiI6ImI0ZDFhYzMwLTBjYzUtMDU3Yy0yZjJhLWI2NGJmMWUyOWZlNSIsInNpdGVPd25lcklkIjoiOGY3NGQ1YjMtNWFkZS00MTNjLTliZTMtMTE1ZGJkODdiNzg3Iiwic2l0ZU1lbWJlcklkIjoiOGY3NGQ1YjMtNWFkZS00MTNjLTliZTMtMTE1ZGJkODdiNzg3IiwiZXhwaXJhdGlvbkRhdGUiOiIyMDIyLTA2LTE5VDE3OjEyOjQ0LjgzM1oiLCJsb2dpbkFjY291bnRJZCI6IjhmNzRkNWIzLTVhZGUtNDEzYy05YmUzLTExNWRiZDg3Yjc4NyJ9';
+// const authorization = 'vlpTQMSFiSNcoyaxuK4GMjD7SR54T7UOLypXaZTskdc.eyJpbnN0YW5jZUlkIjoiNmI4YjIzNWMtZWJkNS00YWM1LWExZTAtOTI5NmQ2OWY3OTVhIiwiYXBwRGVmSWQiOiIxMzgwYjcwMy1jZTgxLWZmMDUtZjExNS0zOTU3MWQ5NGRmY2QiLCJtZXRhU2l0ZUlkIjoiZGY1YThmNmMtZTcxMC00ZmI5LThlY2EtMjRkZDI3N2RlNmJmIiwic2lnbkRhdGUiOiIyMDIyLTA2LTE5VDEzOjEyOjQ0LjgzM1oiLCJ1aWQiOiI4Zjc0ZDViMy01YWRlLTQxM2MtOWJlMy0xMTVkYmQ4N2I3ODciLCJwZXJtaXNzaW9ucyI6Ik9XTkVSIiwiZGVtb01vZGUiOmZhbHNlLCJvcmlnaW5JbnN0YW5jZUlkIjoiY2Y0NWMxYTMtNTAxNy00ZTE2LWFmN2EtYmE1OTdlMDEwYzk0IiwiYmlUb2tlbiI6ImI0ZDFhYzMwLTBjYzUtMDU3Yy0yZjJhLWI2NGJmMWUyOWZlNSIsInNpdGVPd25lcklkIjoiOGY3NGQ1YjMtNWFkZS00MTNjLTliZTMtMTE1ZGJkODdiNzg3Iiwic2l0ZU1lbWJlcklkIjoiOGY3NGQ1YjMtNWFkZS00MTNjLTliZTMtMTE1ZGJkODdiNzg3IiwiZXhwaXJhdGlvbkRhdGUiOiIyMDIyLTA2LTE5VDE3OjEyOjQ0LjgzM1oiLCJsb2dpbkFjY291bnRJZCI6IjhmNzRkNWIzLTVhZGUtNDEzYy05YmUzLTExNWRiZDg3Yjc4NyJ9';
+// @ts-ignore
+const getAuthorization = async () =>  (await __WIX__.dynamicModel).apps['1380b703-ce81-ff05-f115-39571d94dfcd'].instance
 export async function getEcomProducts(query: queryConfig = {}) {
   let url = 'https://www.wixapis.com/stores/v1/products/query';
-
+  const authorization = await getAuthorization()
   let options = {
     method: 'POST',
     headers: {
@@ -46,7 +48,7 @@ export async function getEcomProducts(query: queryConfig = {}) {
 
 export async function getEcomPrdouct(id: string) {
   let url = `https://www.wixapis.com/stores/v1/products/${id}`;
-
+  const authorization = await getAuthorization()
   let options = {
     method: 'GET',
     headers: {
@@ -61,6 +63,7 @@ export async function getEcomPrdouct(id: string) {
 }
 
 export async function createCart(item: Product): Promise<object> {
+  const authorization = await getAuthorization()
   const options = {
     method: 'POST',
     headers: {
@@ -79,6 +82,7 @@ export async function createCart(item: Product): Promise<object> {
 }
 
 export async function addToCartApi(cartId: string, item: Product) {
+  const authorization = await getAuthorization()
   const options = {
     method: 'POST',
     headers: {
@@ -91,6 +95,20 @@ export async function addToCartApi(cartId: string, item: Product) {
 
   return (await(await fetch(`https://www.wixapis.com/ecom/v1/carts/${cartId}/add-to-cart`, options)).json()).cart
 }
+//
+// export async function getCheckoutId(cartId: string) {
+//   const options = {
+//     method: 'POST',
+//     headers: {
+//       cookie: 'XSRF-TOKEN=1655378971%7CpB56eiAIQOo6',
+//       Authorization: authorization,
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({"lineItems":[{id: item.id, quantity: 1, catalogReference: { catalogItemId: item.id, appId: '1380b703-ce81-ff05-f115-39571d94dfcd' }}]})
+//   };
+//
+//   return (await(await fetch(`https://www.wixapis.com/ecom/v1/carts/${cartId}/add-to-cart`, options)).json()).cart
+// }
 interface Cart {
   items: Product[]
   cart: CartDto;
