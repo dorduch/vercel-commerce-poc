@@ -100,10 +100,14 @@ export async function getCheckoutId(cartId: string) {
       Authorization: authorization,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({})
+    body: JSON.stringify({
+      channelType: 'WEB'
+    })
   };
-
-  return (await(await fetch(`https://www.wixapis.com/ecom/v1/carts/${cartId}/create-checkout`, options)).json()).checkoutId
+  console.log(cartId);
+  const result =await ( await fetch(`https://www.wixapis.com/ecom/v1/carts/${cartId}/create-checkout`, options)).json();
+  console.log(result);
+  return result;
 }
 interface Cart {
   items: Product[]
