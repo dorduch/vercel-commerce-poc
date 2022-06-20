@@ -143,7 +143,7 @@ const CartItem = ({
           <span>{price}</span>
         </div>
       </div>
-      {variant === 'default' && (
+      {/* {variant === 'default' && (
         <Quantity
           value={quantity}
           handleRemove={handleRemove}
@@ -151,7 +151,7 @@ const CartItem = ({
           increase={() => increaseQuantity(1)}
           decrease={() => increaseQuantity(-1)}
         />
-      )}
+      )} */}
     </li>
   )
 }
