@@ -19,6 +19,8 @@ module.exports = withCommerceConfig({
   },
   images: {
     domains: ['static.wixstatic.com'],
+    path: '',
+    loader: 'imgix',
   },
   i18n: {
     locales: ['en-US', 'es'],
