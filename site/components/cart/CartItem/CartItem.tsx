@@ -135,9 +135,9 @@ const CartItem = ({
               ))}
             </div>
           )}
-          {variant === 'display' && (
+          
             <div className="text-sm tracking-wider">{quantity}x</div>
-          )}
+          
         </div>
         <div className="flex flex-col justify-between space-y-2 text-sm">
           <span>{price}</span>
