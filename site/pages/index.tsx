@@ -20,8 +20,10 @@ export default function Home() {
   return (
     <>
       <Hero
-        headline="!Dessert dragée halvah croissant."
-        description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
+        headline={`This is not a Wix Store.
+This is Wix Web Services.`}
+        description="You are now visiting the first Wix Store that wasn't built on a Wix editor. The developer who built it could have used any technological stack and still harness the full power of the Wix ecosystem and platform: business solutions, biz manager, hosting, security, CRM, marketing tools, and more.
+Deployed over Wix, built anywhere."
       />
       <Grid variant="filled">
         {products.slice(0, 3).map((product: any, i: number) => (
