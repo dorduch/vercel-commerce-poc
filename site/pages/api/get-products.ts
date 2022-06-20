@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {addToCartApi, createCart, getEcomProducts} from "../../services/ecomApiService";
+import {getEcomProducts} from "../../services/ecomApiService";
 
 
 
