@@ -1,7 +1,8 @@
 .control {
-  @apply bg-primary absolute bottom-10 right-10 flex flex-row
+  @apply absolute bottom-10 right-10 flex flex-row
   border-accent-0 border text-accent-0 z-30 shadow-xl select-none;
   height: 48px;
+  background-color: white;
 }
 
 .leftControl,
@@ -12,7 +13,7 @@
 
 .leftControl:hover,
 .rightControl:hover {
-  background-color: var(--primary);
+  background-color:#0070f3;
 }
 
 .leftControl:focus,
