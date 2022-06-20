@@ -87,14 +87,14 @@ const CartItem = ({
         <div className="w-16 h-16 bg-violet relative overflow-hidden cursor-pointer z-0">
           <Link href={`/my-site-3/_api/hack-reverse-proxy/product/${item.id}`}>
             <a>
-              <Image
+              <img
                 onClick={() => closeSidebarIfPresent()}
                 className={s.productImage}
                 width={150}
                 height={150}
                 src={item.image.url || placeholderImg}
                 alt={item.productName.original || "Product Image"}
-                unoptimized
+                // unoptimized
               />
             </a>
           </Link>
