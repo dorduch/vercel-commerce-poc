@@ -229,11 +229,11 @@ const _useCart = () => {
   return { currentCart, addToCart, clearCart }
 }
 
-// @ts-ignore
 const cartContext = createContext<{
   currentCart: Cart | null
   addToCart(item: Product): Promise<void>
   clearCart(): void
+  // @ts-ignore
 }>(null)
 // @ts-ignore
 export const CartProvider = ({ children }) => {
