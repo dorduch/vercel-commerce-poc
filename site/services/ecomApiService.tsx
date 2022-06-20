@@ -75,7 +75,7 @@ export async function getEcomPrdouct(authorization: string, id: string) {
   return productDtoToSiteProduct(productDto)
 }
 
-export async function createCart(item: Product): Promise<object> {
+export async function createCart(authorization: string, item: Product): Promise<object> {
   const options = {
     method: 'POST',
     headers: {
@@ -93,7 +93,7 @@ export async function createCart(item: Product): Promise<object> {
   return  json.cart
 }
 
-export async function addToCartApi(cartId: string, item: Product) {
+export async function addToCartApi(authorization: string, cartId: string, item: Product) {
   const options = {
     method: 'POST',
     headers: {
@@ -107,7 +107,7 @@ export async function addToCartApi(cartId: string, item: Product) {
   return (await(await fetch(`https://www.wixapis.com/ecom/v1/carts/${cartId}/add-to-cart`, options)).json()).cart
 }
 
-export async function getCheckoutId(cartId: string) {
+export async function getCheckoutId(authorization: string, cartId: string) {
   const options = {
     method: 'POST',
     headers: {
@@ -130,17 +130,18 @@ interface Cart {
 }
 const _useCart = () => {
   const [storedValue, setValue] = useLocalStorage('ecom-cart',null)
+  const authorization = useAuthorization();
   const loadedCart = storedValue ? JSON.parse(storedValue) : null
   const [currentCart, setCurrentCart] = useState<Cart | null>(loadedCart);
   const addToCart =  async (item: Product) => {
     if (!currentCart) {
-      const cart = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/add-to-cart', {method: 'POST', body: `{"item": ${JSON.stringify(item)}}`, headers: { 'Content-Type': 'application/json'}})).json()
+      const cart = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/add-to-cart', {method: 'POST', body: JSON.stringify({"item": item, authorization}), headers: { 'Content-Type': 'application/json'}})).json()
       // const cartId = await createCart(item)
       console.log(cart);
       setCurrentCart({cart, items: [item]})
       setValue(JSON.stringify({cart, items: [item]}))
     } else {
-      const cart = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/add-to-cart', {method: 'POST', body: JSON.stringify({item, cartId: currentCart.cart.id}), headers: { 'Content-Type': 'application/json'}})).json()
+      const cart = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/add-to-cart', {method: 'POST', body: JSON.stringify({item, cartId: currentCart.cart.id, authorization}), headers: { 'Content-Type': 'application/json'}})).json()
       setCurrentCart({cart, items: [...currentCart.items, item]})
       setValue(JSON.stringify({cart, items: [...currentCart.items, item]}))
 
