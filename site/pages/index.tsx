@@ -20,8 +20,8 @@ export default function Home() {
   return (
     <>
       <Hero
-        headline={`This is not a Wix Store.
-This is Wix Web Services.`}
+        headline={`This is a Wix Store.
+        Not a Wix website.`}
         description="You are now visiting the first Wix Store that wasn't built on a Wix editor. The developer who built it could have used any technological stack and still harness the full power of the Wix ecosystem and platform: business solutions, biz manager, hosting, security, CRM, marketing tools, and more.
 Deployed over Wix, built anywhere."
       />
