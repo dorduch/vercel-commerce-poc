@@ -35,7 +35,7 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([])
     const authorization = useAuthorization();
   const getProducts = async () =>{
-    const {products} = await (await fetch('//my-site-3/_api/hack-reverse-proxy/get-products', {headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({query: {}, authorization})})).json()
+    const {products} = await (await fetch('/my-site-3/_api/hack-reverse-proxy/get-products', {headers: { 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify({query: {}, authorization})})).json()
     return products
   }
   useEffect(() => {
