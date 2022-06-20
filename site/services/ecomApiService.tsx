@@ -68,14 +68,9 @@ export async function createCart(item: Product): Promise<object> {
       Authorization: authorization,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ "productId": item.id,
-      "optionSelectionId": [],
-      "customTextFieldSelection": [],
-      "quantity": 1,
-      "buyerNote": "",
-      "subscriptionOptionId": ""})
+    body: JSON.stringify({"cartInfo":{},"merchantDiscounts":[],"lineItems":[{id: item.id, quantity: 1, catalogReference: { catalogItemId: item.id, appId: '1380b703-ce81-ff05-f115-39571d94dfcd' }}],"customLineItems":[]})
   };
-  const first = await fetch('https://www.wixapis.com/stores/v1/carts/volatileCart', options)
+  const first = await fetch('https://www.wixapis.com/ecom/v1/carts', options)
   const json = await first.json();
   console.log({json});
 
@@ -96,20 +91,20 @@ export async function addToCartApi(cartId: string, item: Product) {
 
   return (await(await fetch(`https://www.wixapis.com/ecom/v1/carts/${cartId}/add-to-cart`, options)).json()).cart
 }
-//
-// export async function getCheckoutId(cartId: string) {
-//   const options = {
-//     method: 'POST',
-//     headers: {
-//       cookie: 'XSRF-TOKEN=1655378971%7CpB56eiAIQOo6',
-//       Authorization: authorization,
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({"lineItems":[{id: item.id, quantity: 1, catalogReference: { catalogItemId: item.id, appId: '1380b703-ce81-ff05-f115-39571d94dfcd' }}]})
-//   };
-//
-//   return (await(await fetch(`https://www.wixapis.com/ecom/v1/carts/${cartId}/add-to-cart`, options)).json()).cart
-// }
+
+export async function getCheckoutId(cartId: string) {
+  const options = {
+    method: 'POST',
+    headers: {
+      cookie: 'XSRF-TOKEN=1655378971%7CpB56eiAIQOo6',
+      Authorization: authorization,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({})
+  };
+
+  return (await(await fetch(`https://www.wixapis.com/ecom/v1/carts/${cartId}/create-checkout`, options)).json()).checkoutId
+}
 interface Cart {
   items: Product[]
   cart: CartDto;

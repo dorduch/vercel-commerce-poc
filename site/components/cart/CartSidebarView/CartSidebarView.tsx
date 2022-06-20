@@ -31,8 +31,9 @@ const CartSidebarView: FC = () => {
   const handleClose = () => closeSidebar()
   const router = useRouter();
 
-  const goToCheckout = () => {
+  const goToCheckout = async () => {
     handleClose();
+    const checkoutId = (await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-checkout', {method: "POST", body: JSON.stringify({cartId: currentCart?.cart.id})}))).json()
     router.push(`/my-site-3/checkout?appSectionParams=${encodeURIComponent(JSON.stringify({"a11y": true,
       "cartId": currentCart?.cart.id,
       // "storeUrl": "https://www.hilba4free.com",
@@ -40,6 +41,7 @@ const CartSidebarView: FC = () => {
       "cashierPaymentId": "",
       "origin": "productPage",
       "originType": "buyNow",
+      "checkoutId": checkoutId,
       // "checkoutId": "ff9dee5d-484b-40e7-a76e-740fabb7f893"
     }))}`)
   }
