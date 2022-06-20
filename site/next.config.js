@@ -12,11 +12,6 @@ const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = withCommerceConfig({
   commerce,
-  experimental: {
-    images: {
-      unoptimized: true,
-    },
-  },
   images: {
     domains: ['static.wixstatic.com'],
     path: '',
