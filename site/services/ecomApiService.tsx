@@ -68,9 +68,14 @@ export async function createCart(item: Product): Promise<object> {
       Authorization: authorization,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({"cartInfo":{},"merchantDiscounts":[],"lineItems":[{id: item.id, quantity: 1, catalogReference: { catalogItemId: item.id, appId: '1380b703-ce81-ff05-f115-39571d94dfcd' }}],"customLineItems":[]})
+    body: JSON.stringify({ "productId": item.id,
+      "optionSelectionId": [],
+      "customTextFieldSelection": [],
+      "quantity": 1,
+      "buyerNote": "",
+      "subscriptionOptionId": ""})
   };
-  const first = await fetch('https://www.wixapis.com/ecom/v1/carts', options)
+  const first = await fetch('https://www.wixapis.com/stores/v1/carts/volatileCart', options)
   const json = await first.json();
   console.log({json});
 
