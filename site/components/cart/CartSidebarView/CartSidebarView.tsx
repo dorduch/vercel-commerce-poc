@@ -41,7 +41,7 @@ const CartSidebarView: FC = () => {
       })
     ).json()
     router.push(
-      `/my-site-3/checkout?appSectionParams=${encodeURIComponent(
+      `/my-site-3/checkout?inBizMgr=true&appSectionParams=${encodeURIComponent(
         JSON.stringify({
           a11y: true,
           cartId: currentCart?.cart.id,
