@@ -25,7 +25,7 @@ module.exports = withCommerceConfig({
       {
         source: '/:path*',
         destination: '/my-site-3/:path*'
-      }
+      },
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {
         source: '/checkout',
         destination: '/api/checkout',
