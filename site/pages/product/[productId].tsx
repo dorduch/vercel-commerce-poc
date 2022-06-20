@@ -14,7 +14,7 @@ export default function ProductId() {
 
   useEffect(() => {
     const getProduct =async  () => {
-      return  await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-product', {headers: { 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify({id: router.query.productId, authorization})})).json()
+      return  await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-product', {headers: { 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify({id: window.location.pathname.split('/').at(-1), authorization})})).json()
     }
 getProduct().then(product => {
   setProduct(product)
