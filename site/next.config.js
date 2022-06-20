@@ -22,6 +22,10 @@ module.exports = withCommerceConfig({
   assetPrefix: isProd ? 'https://dorwix.wixsite.com/my-site-3/_api/hack-reverse-proxy' : '',
   rewrites() {
     return [
+      {
+        source: '/:path*',
+        destination: '/my-site-3/:path*'
+      }
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {
         source: '/checkout',
         destination: '/api/checkout',
