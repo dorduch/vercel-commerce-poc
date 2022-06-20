@@ -19,17 +19,17 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
     <Container clean className="mx-auto max-w-8xl px-6">
       <div className={s.nav}>
         <div className="flex items-center flex-1">
-          <Link href="/">
+          <Link href="/my-site-3/_api/hack-reverse-proxy/">
             <a className={s.logo} aria-label="Logo">
               <Logo />
             </a>
           </Link>
           <nav className={s.navMenu}>
-            <Link href="/search">
+            <Link href="/my-site-3/_api/hack-reverse-proxy/search">
               <a className={s.link}>All</a>
             </Link>
             {links?.map((l) => (
-              <Link href={l.href} key={l.href}>
+              <Link href={`/my-site-3/_api/hack-reverse-proxy/${l.href}`} key={l.href}>
                 <a className={s.link}>{l.label}</a>
               </Link>
             ))}

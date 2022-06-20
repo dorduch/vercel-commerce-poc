@@ -54,7 +54,7 @@ const CheckoutSidebarView: FC = () => {
       handleBack={() => setSidebarView('CART_VIEW')}
     >
       <div className="px-4 sm:px-6 flex-1">
-        <Link href="/cart">
+        <Link href="/my-site-3/_api/hack-reverse-proxy/cart">
           <a>
             <Text variant="sectionHeading">Checkout</Text>
           </a>

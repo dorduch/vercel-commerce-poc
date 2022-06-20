@@ -59,7 +59,7 @@ const UserNav: React.FC<{
         )}
         {process.env.COMMERCE_WISHLIST_ENABLED && (
           <li className={s.item}>
-            <Link href="/wishlist">
+            <Link href="/my-site-3/_api/hack-reverse-proxy/wishlist">
               <a onClick={closeSidebarIfPresent} aria-label="Wishlist">
                 <Heart />
               </a>

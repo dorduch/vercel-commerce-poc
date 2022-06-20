@@ -17,7 +17,7 @@ export default function MenuSidebarView({
         <nav>
           <ul>
             <li className={s.item} onClick={() => closeSidebar()}>
-              <Link href="/search">
+              <Link href="/my-site-3/_api/hack-reverse-proxy/search">
                 <a>All</a>
               </Link>
             </li>
@@ -27,7 +27,7 @@ export default function MenuSidebarView({
                 className={s.item}
                 onClick={() => closeSidebar()}
               >
-                <Link href={l.href}>
+                <Link href={`/my-site-3/_api/hack-reverse-proxy/${l.href}`}>
                   <a>{l.label}</a>
                 </Link>
               </li>
