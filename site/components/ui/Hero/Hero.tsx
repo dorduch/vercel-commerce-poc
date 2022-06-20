@@ -17,12 +17,10 @@ const Hero: FC<HeroProps> = ({ headline, description }) => {
           <h2 className={s.title}>{headline}</h2>
           <div className={s.description}>
             <p>{description}</p>
-            <Link href="/my-site-3/_api/hack-reverse-proxy/">
-              <a className="flex items-center text-accent-0 pt-3 font-bold hover:underline cursor-pointer w-max-content">
-                Read it here
+              <div className="flex items-center text-accent-0 pt-3 font-bold hover:underline cursor-pointer w-max-content">
+                Now choose a product to see the magic
                 <ArrowRight width="20" heigh="20" className="ml-1" />
-              </a>
-            </Link>
+              </div>
           </div>
         </div>
       </Container>
