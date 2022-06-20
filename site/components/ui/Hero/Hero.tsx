@@ -17,10 +17,10 @@ const Hero: FC<HeroProps> = ({ headline, description }) => {
           <h2 className={s.title}>{headline}</h2>
           <div className={s.description}>
             <p>{description}</p>
-              <div className="flex items-center text-accent-0 pt-3 font-bold hover:underline cursor-pointer w-max-content">
-                Now choose a product to see the magic
-                <ArrowRight width="20" heigh="20" className="ml-1" />
-              </div>
+            <div className="flex items-center text-accent-0 pt-3 font-bold hover:underline cursor-pointer w-max-content">
+              Now choose a product to see the magic
+              <ArrowRight width="20" heigh="20" className="ml-1" />
+            </div>
           </div>
         </div>
       </Container>

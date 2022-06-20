@@ -79,7 +79,10 @@ const I18nWidget: FC = () => {
               <ul>
                 {options.map((locale) => (
                   <li key={locale}>
-                    <Link href={`/my-site-3/_api/hack-reverse-proxy/${currentPath}`} locale={locale}>
+                    <Link
+                      href={`/my-site-3/_api/hack-reverse-proxy/${currentPath}`}
+                      locale={locale}
+                    >
                       <a
                         className={cn(s.item)}
                         onClick={() => setDisplay(false)}

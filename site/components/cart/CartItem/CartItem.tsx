@@ -8,7 +8,7 @@ import usePrice from '@framework/product/use-price'
 import useUpdateItem from '@framework/cart/use-update-item'
 import useRemoveItem from '@framework/cart/use-remove-item'
 import Quantity from '@components/ui/Quantity'
-import {LineItem} from "../../../types/CartDto";
+import { LineItem } from '../../../types/CartDto'
 
 type ItemOption = {
   name: string
@@ -93,7 +93,7 @@ const CartItem = ({
                 width={150}
                 height={150}
                 src={item.image.url || placeholderImg}
-                alt={item.productName.original || "Product Image"}
+                alt={item.productName.original || 'Product Image'}
                 unoptimized
               />
             </a>

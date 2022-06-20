@@ -23,13 +23,21 @@ const HomeAllProductsGrid: FC<Props> = ({
         <div className={s.aside}>
           <ul className="mb-10">
             <li className="py-1 text-base font-bold tracking-wide">
-              <Link href={`/my-site-3/_api/hack-reverse-proxy/${getCategoryPath('')}`}>
+              <Link
+                href={`/my-site-3/_api/hack-reverse-proxy/${getCategoryPath(
+                  ''
+                )}`}
+              >
                 <a>All Categories</a>
               </Link>
             </li>
             {categories.map((cat: any) => (
               <li key={cat.path} className="py-1 text-accent-8 text-base">
-                <Link href={`/my-site-3/_api/hack-reverse-proxy/${getCategoryPath(cat.path)}`}>
+                <Link
+                  href={`/my-site-3/_api/hack-reverse-proxy/${getCategoryPath(
+                    cat.path
+                  )}`}
+                >
                   <a>{cat.name}</a>
                 </Link>
               </li>
@@ -37,13 +45,21 @@ const HomeAllProductsGrid: FC<Props> = ({
           </ul>
           <ul className="">
             <li className="py-1 text-base font-bold tracking-wide">
-              <Link href={`/my-site-3/_api/hack-reverse-proxy/${getDesignerPath('')}`}>
+              <Link
+                href={`/my-site-3/_api/hack-reverse-proxy/${getDesignerPath(
+                  ''
+                )}`}
+              >
                 <a>All Designers</a>
               </Link>
             </li>
             {brands.flatMap(({ node }: any) => (
               <li key={node.path} className="py-1 text-accent-8 text-base">
-                <Link href={`/my-site-3/_api/hack-reverse-proxy/${getDesignerPath(node.path)}`}>
+                <Link
+                  href={`/my-site-3/_api/hack-reverse-proxy/${getDesignerPath(
+                    node.path
+                  )}`}
+                >
                   <a>{node.name}</a>
                 </Link>
               </li>

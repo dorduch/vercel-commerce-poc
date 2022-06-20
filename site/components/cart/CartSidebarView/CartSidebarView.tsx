@@ -8,12 +8,12 @@ import { useUI } from '@components/ui/context'
 import { Bag, Cross, Check } from '@components/icons'
 import usePrice from '@framework/product/use-price'
 import SidebarLayout from '@components/common/SidebarLayout'
-import {useAuthorization, useCart} from "../../../services/ecomApiService";
-import {useRouter} from "next/router";
+import { useAuthorization, useCart } from '../../../services/ecomApiService'
+import { useRouter } from 'next/router'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
-  const {currentCart, clearCart} = useCart()
+  const { currentCart, clearCart } = useCart()
 
   const { price: subTotal } = usePrice(
     currentCart?.cart && {
@@ -28,24 +28,35 @@ const CartSidebarView: FC = () => {
     }
   )
   const handleClose = () => closeSidebar()
-  const router = useRouter();
+  const router = useRouter()
 
-    const authorization = useAuthorization()
+  const authorization = useAuthorization()
   const goToCheckout = async () => {
-    handleClose();
-    const {checkoutId} = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-checkout', {headers: { 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify({authorization, cartId: currentCart?.cart.id})})).json()
-    router.push(`/my-site-3/checkout?appSectionParams=${encodeURIComponent(JSON.stringify({"a11y": true,
-      "cartId": currentCart?.cart.id,
-      "isPickupFlow": false,
-      "cashierPaymentId": "",
-      "origin": "productPage",
-      "originType": "buyNow",
-      "checkoutId": checkoutId,
-    }))}`)
-    clearCart();
+    handleClose()
+    const { checkoutId } = await (
+      await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-checkout', {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify({ authorization, cartId: currentCart?.cart.id }),
+      })
+    ).json()
+    router.push(
+      `/my-site-3/checkout?appSectionParams=${encodeURIComponent(
+        JSON.stringify({
+          a11y: true,
+          cartId: currentCart?.cart.id,
+          isPickupFlow: false,
+          cashierPaymentId: '',
+          origin: 'productPage',
+          originType: 'buyNow',
+          checkoutId: checkoutId,
+        })
+      )}`
+    )
+    clearCart()
   }
 
-  console.log({currentCart});
+  console.log({ currentCart })
 
   const error = null
   const success = null
@@ -130,10 +141,9 @@ const CartSidebarView: FC = () => {
               <span>{total}</span>
             </div>
             <div>
-
-                <Button Component="a" width="100%" onClick={goToCheckout}>
-                  Proceed to Checkout ({total})
-                </Button>
+              <Button Component="a" width="100%" onClick={goToCheckout}>
+                Proceed to Checkout ({total})
+              </Button>
             </div>
           </div>
         </>

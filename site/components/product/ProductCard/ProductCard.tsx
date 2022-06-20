@@ -37,7 +37,6 @@ const ProductCard: FC<Props> = ({
     className
   )
 
-
   return (
     <Link href={`/my-site-3/_api/hack-reverse-proxy/product/${product.id}`}>
       <a className={rootClassName} aria-label={product.name}>

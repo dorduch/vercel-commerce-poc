@@ -73,7 +73,9 @@ const WishlistCard: React.FC<{
       <div className={s.description}>
         <div className="flex-1 mb-6">
           <h3 className="text-2xl mb-2 -mt-1">
-            <Link href={`/my-site-3/_api/hack-reverse-proxy/product${product.path}`}>
+            <Link
+              href={`/my-site-3/_api/hack-reverse-proxy/product${product.path}`}
+            >
               <a>{product.name}</a>
             </Link>
           </h3>

@@ -1,22 +1,28 @@
 import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Grid, Marquee, Hero } from '@components/ui'
-import {useAuthorization} from "../services/ecomApiService";
-import {useEffect, useState} from "react";
-import {Product} from "@commerce/types/product";
+import { useAuthorization } from '../services/ecomApiService'
+import { useEffect, useState } from 'react'
+import { Product } from '@commerce/types/product'
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([])
-    const authorization = useAuthorization();
-  const getProducts = async () =>{
-    const products = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-products', {headers: { 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify({query: {}, authorization})})).json()
+  const authorization = useAuthorization()
+  const getProducts = async () => {
+    const products = await (
+      await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-products', {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify({ query: {}, authorization }),
+      })
+    ).json()
     return products
   }
   useEffect(() => {
     if (authorization) {
-      getProducts().then(_products => setProducts(_products))
+      getProducts().then((_products) => setProducts(_products))
     }
-  },[authorization])
+  }, [authorization])
   return (
     <>
       <Hero

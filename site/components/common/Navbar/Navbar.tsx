@@ -29,7 +29,10 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
               <a className={s.link}>All</a>
             </Link>
             {links?.map((l) => (
-              <Link href={`/my-site-3/_api/hack-reverse-proxy/${l.href}`} key={l.href}>
+              <Link
+                href={`/my-site-3/_api/hack-reverse-proxy/${l.href}`}
+                key={l.href}
+              >
                 <a className={s.link}>{l.label}</a>
               </Link>
             ))}
