@@ -62,7 +62,7 @@ const WishlistCard: React.FC<{
   return (
     <div className={cn(s.root, { 'opacity-75 pointer-events-none': removing })}>
       <div className={s.imageWrapper}>
-        <img
+        <Image
           width={230}
           height={230}
           src={product.images[0]?.url || placeholderImg}
