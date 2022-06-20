@@ -33,7 +33,7 @@ const CartSidebarView: FC = () => {
 
   const goToCheckout = () => {
     handleClose();
-    router.push(`/checkout?appSectionParams=${encodeURIComponent(JSON.stringify({"a11y": true,
+    router.push(`/my-site-3/checkout?appSectionParams=${encodeURIComponent(JSON.stringify({"a11y": true,
       "cartId": currentCart?.cart.id,
       // "storeUrl": "https://www.hilba4free.com",
       "isPickupFlow": false,
