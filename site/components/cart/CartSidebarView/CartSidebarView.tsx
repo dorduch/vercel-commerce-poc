@@ -33,7 +33,7 @@ const CartSidebarView: FC = () => {
 
   const goToCheckout = async () => {
     handleClose();
-    const checkoutId = (await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-checkout', {headers: { 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify({cartId: currentCart?.cart.id})}))).json()
+    const {checkoutId} = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/get-checkout', {headers: { 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify({cartId: currentCart?.cart.id})})).json()
     router.push(`/my-site-3/checkout?appSectionParams=${encodeURIComponent(JSON.stringify({"a11y": true,
       "cartId": currentCart?.cart.id,
       // "storeUrl": "https://www.hilba4free.com",
