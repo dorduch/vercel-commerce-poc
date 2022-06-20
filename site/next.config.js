@@ -20,7 +20,6 @@ module.exports = withCommerceConfig({
     defaultLocale: 'en-US',
   },
   assetPrefix: isProd ? 'https://dorwix.wixsite.com/my-site-3/_api/hack-reverse-proxy' : '',
-  basePath: '/my-site-3/_api/hack-reverse-proxy',
   rewrites() {
     return [
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {
