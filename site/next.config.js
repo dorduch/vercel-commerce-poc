@@ -19,7 +19,6 @@ module.exports = withCommerceConfig({
     locales: ['en-US', 'es'],
     defaultLocale: 'en-US',
   },
-  basePath: '/my-site-3',
   assetPrefix: isProd ? 'https://dorwix.wixsite.com/my-site-3/_api/hack-reverse-proxy' : '',
   rewrites() {
     return [
