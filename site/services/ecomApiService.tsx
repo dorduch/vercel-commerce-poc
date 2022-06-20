@@ -99,12 +99,12 @@ const _useCart = () => {
   const [currentCart, setCurrentCart] = useState<Cart | null>(null);
   const addToCart =  async (item: Product) => {
     if (!currentCart) {
-      const cart = await (await fetch('/api/add-to-cart', {method: 'POST', body: `{"item": ${JSON.stringify(item)}}`, headers: { 'Content-Type': 'application/json'}})).json()
+      const cart = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/add-to-cart', {method: 'POST', body: `{"item": ${JSON.stringify(item)}}`, headers: { 'Content-Type': 'application/json'}})).json()
       // const cartId = await createCart(item)
       console.log(cart);
       setCurrentCart({cart, items: [item]})
     } else {
-      const cart = await (await fetch('/api/add-to-cart', {method: 'POST', body: JSON.stringify({item, cartId: currentCart.cart.id}), headers: { 'Content-Type': 'application/json'}})).json()
+      const cart = await (await fetch('/my-site-3/_api/hack-reverse-proxy/api/add-to-cart', {method: 'POST', body: JSON.stringify({item, cartId: currentCart.cart.id}), headers: { 'Content-Type': 'application/json'}})).json()
       setCurrentCart({cart, items: [...currentCart.items, item]})
 
       // await addToCartApi(currentCart.id, item)
