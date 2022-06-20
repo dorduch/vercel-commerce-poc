@@ -39,7 +39,7 @@ const ProductCard: FC<Props> = ({
 
 
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={`/my-site-3/_api/hack-reverse-proxy/product/${product.id}`}>
       <a className={rootClassName} aria-label={product.name}>
         {variant === 'slim' && (
           <>
