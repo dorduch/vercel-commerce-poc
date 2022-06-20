@@ -13,8 +13,7 @@ import {useRouter} from "next/router";
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
-  const {currentCart} = useCart()
-  // const { data, isLoading, isEmpty } = useCart()
+  const {currentCart, clearCart} = useCart()
 
   const { price: subTotal } = usePrice(
     currentCart?.cart && {
@@ -44,6 +43,7 @@ const CartSidebarView: FC = () => {
       "checkoutId": checkoutId,
       // "checkoutId": "ff9dee5d-484b-40e7-a76e-740fabb7f893"
     }))}`)
+    clearCart();
   }
 
   console.log({currentCart});

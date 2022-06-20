@@ -137,11 +137,16 @@ const _useCart = () => {
     }
   }
 
-  return {currentCart, addToCart}
+  const clearCart = () => {
+    setCurrentCart(null);
+    setValue(null)
+  }
+
+  return {currentCart, addToCart, clearCart}
 }
 
 // @ts-ignore
-const cartContext = createContext<{currentCart: Cart | null, addToCart(item: Product): Promise<void>}>(null);
+const cartContext = createContext<{currentCart: Cart | null, addToCart(item: Product): Promise<void>, clearCart(): void}>(null);
 // @ts-ignore
 export const CartProvider =({children}) => {
   const value = _useCart();
