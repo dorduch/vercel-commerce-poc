@@ -36,8 +36,8 @@ const CartItem = ({
   const updateItem = useUpdateItem({ item })
 
   const { price } = usePrice({
-    amount: parseFloat(item.fullPrice.amount) * item.quantity,
-    baseAmount: parseFloat(item.price.amount) * item.quantity,
+    amount: parseFloat(item.price.amount) * item.quantity,
+    baseAmount: parseFloat(item.fullPrice.amount) * item.quantity,
     currencyCode,
   })
 

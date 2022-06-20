@@ -3,7 +3,7 @@ import {Product} from "@commerce/types/product";
 import {createContext, useContext, useState} from "react";
 import {CartDto} from "../types/CartDto";
 
-function productDtoToSiteProduct(dto: ProductDTO) {
+function productDtoToSiteProduct(dto: ProductDTO): Product {
   return {
     id: dto.id,
     name: dto.name,
@@ -13,7 +13,10 @@ function productDtoToSiteProduct(dto: ProductDTO) {
     images: dto.media.items.map(item => ({url: item.image.url, alt: item.title})),
     variants: [],
     price: {
-      value: dto.price.price
+      value: dto.priceData.discountedPrice,
+      retailPrice: dto.priceData.price,
+      currencyCode: dto.priceData.currency,
+      salePrice: dto.priceData.discountedPrice
     },
     options: []
 
